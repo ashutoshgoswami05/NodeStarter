@@ -31,11 +31,11 @@ router.post("/register", async (req, res) => {
 
 router.post("/signin", async (req, res) => {
   try {
-    const { email, password } = res.body;
+    const { email, password } = req.body;
     if (!email || !password)
       res.status(400).send({ message: "Cannot be empty" });
     const userLogin = await User.findOne({ email });
-    if (!userLogin) es.status(400).send({ message: " login Error" });
+    if (!userLogin) res.status(400).send({ message: " login Error" });
     else res.status(200).send({ message: " login Done" });
   } catch (err) {
     console.log(err);
